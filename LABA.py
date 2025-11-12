@@ -14,7 +14,7 @@ def ugol():
 
 print("Задание 1:")
 ugol()
-
+#---------------------------------------------------------------------------------------------
 print("-"*100)
 print("Задание 2:")
 
@@ -41,10 +41,10 @@ def ERROR_x0_bigger_then_x1():
 
 
 
-def ERROR_negative_or_zero_step():
+def ERROR_negative_or_zero_step_or_stepisbigger_then_x1():
     sleep(1)
     print(
-        f"ERROR_negative_step\tВВЕДЁН НЕВЕРНЫЙ ШАГ\tERROR_negative_step\tВВЕДЁН НЕВЕРНЫЙ ШАГ")
+        f"ERROR_negative_or_zero_step_or_stepisbigger_then_x1\tВВЕДЁН НЕВЕРНЫЙ ШАГ\tERROR_negative_or_zero_step_or_stepisbigger_then_x1\tВВЕДЁН НЕВЕРНЫЙ ШАГ")
     sleep(1)
     print("НАХОДИМ РЕШЕНИЕ ВАШЕЙ ПРОБЛЕМЫ")
     sleep(0.1)
@@ -60,9 +60,14 @@ def ERROR_negative_or_zero_step():
     sleep(1)
     print("　　　　　　　　　(¸.•´ (¸.•’*")
     sleep(1)
-    print("ШАГ ЯВЛЯЕТСЯ ОТРИЦАТЕЛЬНЫМ ЧИСЛОМ ИЛИ РАВЕН НУЛЮ, ЧТО НЕДОПУСТИМО ДЛЯ ОТРЕЗКА [X0;X1]\nВВЕДИТЕ КОРРЕКТНОЕ ЗНАЧЕНИЕ ШАГА")
+    print("ШАГ ЯВЛЯЕТСЯ ОТРИЦАТЕЛЬНЫМ ЧИСЛОМ ИЛИ РАВЕН НУЛЮ ИЛИ БОЛЬШЕ ЗНАЧЕНИЯ X1, ЧТО НЕДОПУСТИМО ДЛЯ ОТРЕЗКА [X0;X1]\nВВЕДИТЕ КОРРЕКТНОЕ ЗНАЧЕНИЕ ШАГА")
     ex_2()
 
+def ERROR_N_ISNOTNATURALNUMBER():
+    print("ERROR_N_ISNOTNATURALNUMBER\tERROR_N_ISNOTNATURALNUMBER\tERROR_N_ISNOTNATURALNUMBER")
+    sleep(2)
+    print("ПРОСЬБА ВЫУЧИТЕ МАТЕМАТИКУ: НАТУРАЛЬНЫЕ ЧИСЛА - ЭТО ЧИСЛА СЧЁТА, НАЧИНАЮТСЯ С ЕДИНИЦЫ И ЦЕЛОЧИСЛЕННЫ")
+    ex_3()
 
 
 def ex_2():
@@ -72,8 +77,8 @@ def ex_2():
     if X0 > X1:
         ERROR_x0_bigger_then_x1()
     dX = float(input("Введите шаг dX: "))
-    if dX <= 0:
-        ERROR_negative_or_zero_step()
+    if dX <= 0 or dX > X1:
+        ERROR_negative_or_zero_step_or_stepisbigger_then_x1()
 
 
     x = X0
@@ -88,4 +93,30 @@ def ex_2():
         x += dX
 
 ex_2()
+#---------------------------------------------------------------------------------------------
+print("-" * 100)
+print("Задание 3:")
 
+
+def ex_3():
+    X = float(input("Введите вещественное число X: "))
+    N = int(input("Введите натуральное число N: "))
+
+    if N <= 0:
+        ERROR_N_ISNOTNATURALNUMBER()
+
+    res = 1.0
+    factorial = 1.0
+
+    for n in range(1, N + 1):
+        factorial *= n  # формула факториала
+        factorial_of_next_value = (X ** n) / factorial
+        res += factorial_of_next_value
+
+    # Сравнение с настоящей экспонентой
+    exp = math.exp(X)
+
+    print(f"Точное значение exp({X}): {exp:.10f}")
+    print(f"Приближенное значение из функции: {res:.10f}")
+
+ex_3()
